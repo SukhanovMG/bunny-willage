@@ -1,0 +1,1 @@
+g++ main.cpp -o bunny -Wall -O3 -std=c++11
