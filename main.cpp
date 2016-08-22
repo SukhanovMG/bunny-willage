@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	bunny::Bunny b;
+	bv::Bunny b;
 
 	cout << b << endl;
 	return 0;

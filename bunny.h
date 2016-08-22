@@ -4,31 +4,31 @@
 #include <string>
 #include <random>
 
-namespace bunny {
+namespace bv {
 	enum class Sex { Male, Female };
 	enum class Color { White, Brown, Black, Spotted };
 
-	std::string sex_to_string(bunny::Sex sex)
+	std::string sex_to_string(bv::Sex sex)
 	{
 		switch (sex) {
-			case bunny::Sex::Male:
+			case bv::Sex::Male:
 				return "Male";
-			case bunny::Sex::Female:
+			case bv::Sex::Female:
 			default:
 				return "Female";
 		}
 	}
 
-	std::string color_to_string(bunny::Color color)
+	std::string color_to_string(bv::Color color)
 	{
 		switch (color) {
-			case bunny::Color::White:
+			case bv::Color::White:
 				return "White";
-			case bunny::Color::Brown:
+			case bv::Color::Brown:
 				return "Brown";
-			case bunny::Color::Black:
+			case bv::Color::Black:
 				return "Black";
-			case bunny::Color::Spotted:
+			case bv::Color::Spotted:
 			default:
 				return "Spotted";
 		}
@@ -45,15 +45,15 @@ namespace bunny {
 			std::uniform_int_distribution<unsigned int> dist_mutant;
 
 			// 50% chance of sex
-			bunny::Sex gen_sex() { return bunny::Sex(dist_sex(gen)); }
+			bv::Sex gen_sex() { return bv::Sex(dist_sex(gen)); }
 			// even chance of each color
-			bunny::Color gen_color() { return bunny::Color(dist_color(gen)); }
+			bv::Color gen_color() { return bv::Color(dist_color(gen)); }
 			// 2% chance of being radioactive mutant vampire
 			bool gen_mutant() { return dist_mutant(gen) > 1 ? false : true; }
 
 			// bunny properties
-			bunny::Sex   sex;
-			bunny::Color color;
+			bv::Sex   sex;
+			bv::Color color;
 			unsigned int age;
 			std::string  name;
 			bool          radioactive_mutant_vampire;
@@ -68,13 +68,13 @@ namespace bunny {
 				radioactive_mutant_vampire(gen_mutant())
 			{}
 
-			Bunny(bunny::Color c) : Bunny()
+			Bunny(bv::Color c) : Bunny()
 			{
 				color = c;
 			}
 
-			bunny::Sex   get_sex()   const { return sex;   }
-			bunny::Color get_color() const { return color; }
+			bv::Sex   get_sex()   const { return sex;   }
+			bv::Color get_color() const { return color; }
 			unsigned int get_age()   const { return age;   }
 			std::string  get_name()  const { return name;  }
 
@@ -82,7 +82,7 @@ namespace bunny {
 			bool is_dead() const { return radioactive_mutant_vampire ? age > 50 : age > 10; }
 	};
 
-	std::ostream& operator<<(std::ostream& os, const bunny::Bunny& b)
+	std::ostream& operator<<(std::ostream& os, const bv::Bunny& b)
 	{
 		os << b.get_name() << ": " << color_to_string(b.get_color());
 		os << " " << sex_to_string(b.get_sex());
